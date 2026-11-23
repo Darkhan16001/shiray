@@ -1,0 +1,1424 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Парасат майданы — Шырай</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* =====================================
+   НЕГІЗГІ ТҮСТЕР
+===================================== */
+
+:root {
+  --dark:#112f27;
+  --green:#167348;
+  --blue:#176bc2;
+  --red:#d53138;
+  --gold:#b88e50;
+  --cream:#f7f5ef;
+  --text:#24382e;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+html,body {
+  margin:0;
+  width:100%;
+  height:100%;
+}
+
+body {
+  background:#0d2921;
+  font-family:"Manrope","Noto Sans",sans-serif;
+  overflow:hidden;
+}
+
+button {
+  font-family:inherit;
+}
+
+/* =====================================
+   САЙТТЫҢ ҚҰРЫЛЫМЫ
+===================================== */
+
+.app {
+  height:100dvh;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  padding:10px 18px;
+  gap:9px;
+}
+
+header {
+  height:48px;
+  flex-shrink:0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:white;
+  font-size:18px;
+  font-weight:800;
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.brand-icon {
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  border:2px solid #cba96c;
+  border-radius:11px;
+  color:#e4c68c;
+  font-family:Georgia,serif;
+  font-size:24px;
+}
+
+.header-right {
+  font-size:15px;
+  color:#dfc18d;
+}
+
+/* =====================================
+   ПРЕЗЕНТАЦИЯ ЭКРАНЫ
+===================================== */
+
+.stage {
+  position:relative;
+  flex:1;
+  min-height:0;
+  border-radius:24px;
+  overflow:hidden;
+  background:var(--cream);
+  box-shadow:0 22px 65px #0005;
+}
+
+.stage::before {
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:10px;
+  background:linear-gradient(
+    180deg,#d6aa67,#1a6a48
+  );
+  z-index:10;
+}
+
+/* =====================================
+   СЛАЙД
+===================================== */
+
+.slide {
+  position:absolute;
+  inset:0;
+  display:none;
+  overflow-y:auto;
+  padding:clamp(22px,3.3vw,50px);
+  background:
+    radial-gradient(
+      circle at 85% 12%,
+      #e7d8bb70,
+      transparent 40%
+    ),
+    var(--cream);
+  animation:show .35s ease;
+}
+
+.slide.active {
+  display:block;
+}
+
+@keyframes show {
+  from {
+    opacity:0;
+    transform:translateY(12px);
+  }
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.layout {
+  width:100%;
+  min-height:100%;
+  display:grid;
+  grid-template-columns:
+    minmax(0,1.12fr)
+    minmax(0,.88fr);
+  gap:clamp(22px,3vw,48px);
+  align-items:center;
+}
+
+.content {
+  min-width:0;
+}
+
+/* =====================================
+   МӘТІНДЕР
+===================================== */
+
+.kicker {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
+  font-size:clamp(14px,1.12vw,19px);
+  font-weight:800;
+  letter-spacing:.1em;
+  color:#6b866e;
+}
+
+.kicker::before {
+  content:"";
+  width:43px;
+  height:5px;
+  background:var(--gold);
+  border-radius:10px;
+}
+
+h1,h2,p {
+  margin-top:0;
+}
+
+h1 {
+  font-size:clamp(49px,5.7vw,91px);
+  line-height:1.06;
+  letter-spacing:-.05em;
+  font-weight:800;
+  color:var(--dark);
+  margin-bottom:26px;
+}
+
+h2 {
+  font-size:clamp(38px,3.75vw,62px);
+  line-height:1.12;
+  letter-spacing:-.035em;
+  font-weight:800;
+  color:var(--dark);
+  margin-bottom:20px;
+}
+
+.lead {
+  font-size:clamp(23px,2vw,33px);
+  font-weight:800;
+  line-height:1.43;
+  color:#a07a43;
+  margin-bottom:18px;
+}
+
+.paragraph {
+  font-size:clamp(20px,1.8vw,29px);
+  line-height:1.6;
+  font-weight:600;
+  color:var(--text);
+  margin-bottom:14px;
+}
+
+/* =====================================
+   ТҮСТІ СӨЗДЕР
+===================================== */
+
+.red {
+  color:var(--red);
+  font-weight:800;
+}
+
+.blue {
+  color:var(--blue);
+  font-weight:800;
+}
+
+.green {
+  color:var(--green);
+  font-weight:800;
+}
+
+.gold {
+  color:#ad7a31;
+  font-weight:800;
+}
+
+/* =====================================
+   ТІЗІМДЕР
+===================================== */
+
+.points {
+  display:grid;
+  gap:11px;
+  margin-top:16px;
+}
+
+.point {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:12px 16px;
+  border:1px solid #e2dfd5;
+  background:#fffefa;
+  border-radius:14px;
+  font-size:clamp(19px,1.6vw,26px);
+  font-weight:700;
+  line-height:1.4;
+}
+
+.point::before {
+  content:"";
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:var(--gold);
+  flex-shrink:0;
+}
+
+.note {
+  margin-top:17px;
+  padding:17px 20px;
+  background:#e5ece2;
+  border-left:6px solid var(--gold);
+  border-radius:0 15px 15px 0;
+  color:#28543f;
+  font-size:clamp(19px,1.6vw,27px);
+  font-weight:800;
+  line-height:1.5;
+}
+
+/* =====================================
+   ФОТОСУРЕТТЕР
+===================================== */
+
+.image-side {
+  position:relative;
+  height:min(68vh,600px);
+  min-height:280px;
+  overflow:hidden;
+  border-radius:23px;
+  background:#dfe6de;
+  border:1px solid #d4dad1;
+  box-shadow:0 16px 45px #14382728;
+}
+
+.image-side img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.image-side.contain img {
+  object-fit:contain;
+  padding:10px;
+}
+
+.image-side::after {
+  content:"";
+  position:absolute;
+  inset:10px;
+  border:1px solid #ffffff85;
+  border-radius:16px;
+  pointer-events:none;
+}
+
+.image-caption {
+  position:absolute;
+  bottom:13px;
+  left:13px;
+  right:13px;
+  padding:12px 15px;
+  border-radius:11px;
+  background:#102f27e8;
+  color:white;
+  text-align:center;
+  font-size:clamp(14px,1vw,18px);
+  font-weight:800;
+  line-height:1.4;
+  z-index:3;
+}
+
+/* =====================================
+   БІРІНШІ БЕТ
+===================================== */
+
+.cover h1 span {
+  color:#b68b4c;
+}
+
+.cover-meta {
+  margin-top:30px;
+  display:grid;
+  gap:12px;
+  font-size:clamp(21px,1.7vw,28px);
+  font-weight:700;
+}
+
+.cover-meta strong {
+  color:var(--green);
+}
+
+/* =====================================
+   16-БЕТ: ҚОШТАСУ
+===================================== */
+
+.farewell {
+  background:
+    radial-gradient(
+      circle at 80% 15%,
+      #aa945a45,
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,#163b30,#0b211b
+    );
+  text-align:center;
+}
+
+.farewell::before {
+  content:"";
+  position:absolute;
+  inset:24px;
+  border:2px solid #b99a6190;
+  border-radius:24px;
+  pointer-events:none;
+}
+
+.farewell-layout {
+  min-height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  position:relative;
+  z-index:1;
+}
+
+.farewell-label {
+  font-size:clamp(17px,1.5vw,24px);
+  font-weight:800;
+  color:#d2b078;
+  letter-spacing:.2em;
+}
+
+.farewell h2 {
+  font-size:clamp(46px,5.5vw,92px);
+  line-height:1.15;
+  color:#fff8e9;
+  text-align:center;
+  max-width:1100px;
+  margin:10px 0;
+  text-shadow:0 7px 30px #0005;
+}
+
+.farewell h2 span {
+  color:#d8b776;
+}
+
+.farewell-line {
+  width:160px;
+  height:5px;
+  border-radius:10px;
+  background:linear-gradient(
+    90deg,transparent,#e2c38e,transparent
+  );
+}
+
+.farewell-book {
+  width:clamp(100px,11vw,175px);
+  height:clamp(100px,11vw,175px);
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid #d5b67c;
+  box-shadow:0 12px 35px #0006;
+}
+
+.farewell-author {
+  padding:17px 32px;
+  border:1px solid #c9a56e;
+  border-radius:17px;
+  color:#fff8e9;
+  background:#ffffff12;
+  font-size:clamp(24px,2.7vw,43px);
+  font-weight:800;
+}
+
+.farewell-author strong {
+  color:#e0bf83;
+}
+
+.farewell-footer {
+  color:#c6d2c4;
+  font-size:clamp(16px,1.4vw,23px);
+  font-weight:700;
+}
+
+/* =====================================
+   БАСҚАРУ
+===================================== */
+
+footer {
+  height:55px;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.buttons {
+  display:flex;
+  gap:10px;
+}
+
+.btn {
+  padding:11px 19px;
+  min-height:44px;
+  border-radius:12px;
+  border:1px solid #70927b;
+  background:#285542;
+  color:white;
+  font-size:16px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.btn:hover {
+  background:#46745a;
+}
+
+.btn:disabled {
+  opacity:.35;
+  cursor:default;
+}
+
+.btn.primary {
+  background:#d4ad70;
+  color:#173629;
+  border-color:#d4ad70;
+}
+
+.progress {
+  flex:1;
+  max-width:360px;
+  height:8px;
+  border-radius:20px;
+  background:#42614f;
+  overflow:hidden;
+}
+
+.progress-fill {
+  width:0;
+  height:100%;
+  background:#e2c389;
+  transition:width .3s;
+}
+
+.counter {
+  color:white;
+  font-size:17px;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+/* =====================================
+   КІШКЕНТАЙ ЭКРАН
+===================================== */
+
+@media(max-height:740px) {
+  .app {
+    padding:6px 14px;
+    gap:5px;
+  }
+
+  header { height:36px; }
+  footer { height:42px; }
+
+  .slide {
+    padding:20px 31px;
+  }
+
+  h2 {
+    font-size:clamp(31px,3vw,48px);
+    margin-bottom:13px;
+  }
+
+  .lead {
+    font-size:clamp(21px,1.7vw,28px);
+    margin-bottom:10px;
+  }
+
+  .paragraph {
+    font-size:clamp(18px,1.5vw,24px);
+    line-height:1.43;
+    margin-bottom:9px;
+  }
+
+  .point {
+    padding:8px 13px;
+    font-size:clamp(18px,1.4vw,23px);
+  }
+
+  .note {
+    padding:10px 15px;
+    font-size:20px;
+  }
+
+  .kicker {
+    margin-bottom:10px;
+  }
+
+  .btn {
+    min-height:35px;
+    padding:7px 13px;
+  }
+}
+
+@media(max-width:850px) {
+  .app {
+    padding:6px;
+    gap:6px;
+  }
+
+  header {
+    height:43px;
+    font-size:12px;
+    padding:0 8px;
+  }
+
+  .brand-icon {
+    width:31px;
+    height:31px;
+    font-size:19px;
+  }
+
+  .header-right {
+    font-size:11px;
+  }
+
+  .stage {
+    border-radius:15px;
+  }
+
+  .slide {
+    padding:25px 20px;
+  }
+
+  .slide-layout,
+  .layout {
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:18px;
+  }
+
+  h1 { font-size:48px; }
+  h2 { font-size:35px; }
+
+  .lead { font-size:22px; }
+
+  .paragraph {
+    font-size:20px;
+    line-height:1.5;
+  }
+
+  .point { font-size:19px; }
+  .note { font-size:19px; }
+
+  .image-side {
+    height:330px;
+    min-height:330px;
+  }
+
+  footer { height:47px; }
+
+  .btn {
+    font-size:12px;
+    padding:8px 10px;
+    min-height:38px;
+  }
+
+  .progress { display:none; }
+  .counter { font-size:13px; }
+
+  .farewell h2 { font-size:43px; }
+  .farewell-author { font-size:27px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+  <div class="brand">
+    <div class="brand-icon">Ә</div>
+    ТӨЛЕН ӘБДІК · ПАРАСАТ МАЙДАНЫ
+  </div>
+
+  <div class="header-right">
+    ПРЕЗЕНТАЦИЯ · 2026
+  </div>
+</header>
+
+<main class="stage" id="stage">
+  <div id="slides"></div>
+</main>
+
+<footer>
+
+  <div class="buttons">
+    <button class="btn" id="prev">
+      ← Алдыңғы
+    </button>
+
+    <button class="btn primary" id="next">
+      Келесі →
+    </button>
+  </div>
+
+  <div class="progress">
+    <div class="progress-fill" id="progress"></div>
+  </div>
+
+  <span class="counter" id="counter">
+    01 / 16
+  </span>
+
+  <button class="btn" id="fullscreen">
+    ⛶ Экран
+  </button>
+
+</footer>
+
+</div>
+
+<script>
+
+/* =====================================
+   СУРЕТТЕР
+   16 БЕТКЕ ӘРТҮРЛІ КӨРІНІС
+===================================== */
+
+const PHOTO_LIST = [
+
+  // 1. Кітап мұқабасы
+  [
+    "https://simg.marwin.kz/media/catalog/product/cache/8d1771fdd19ec2393e47701ba45e606d/8/2/bdk_t_parasat_maydany.jpg",
+    "https://simg.marwin.kz/media/catalog/product/a/b/abdik_t_parasat_maydany_zhumsa.png"
+  ],
+
+  // 2. Автор портреті
+  [
+    "https://adebiportal.kz/storage/tmp/resize/news/1200_0_XudHxuPFVx5w7mE6SRjktuImL3lkiwm44bXnv6qY.jpg",
+    "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1200"
+  ],
+
+  // 3. Жазушы және шығармашылық
+  [
+    "https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?w=1200",
+    "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1200"
+  ],
+
+  // 4. Басқа мұқаба
+  [
+    "https://simg.marwin.kz/media/catalog/product/a/b/abdik_t_parasat_maydany_zhumsa.png",
+    "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=1200"
+  ],
+
+  // 5. Жанр, кітап оқу
+  [
+    "https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=1200",
+    "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1200"
+  ],
+
+  // 6. Күнделік
+  [
+    "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200",
+    "https://images.unsplash.com/photo-1517842645767-c639042777db?w=1200"
+  ],
+
+  // 7. Ойланған адам
+  [
+    "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200",
+    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200"
+  ],
+
+  // 8. Хат пен дәптер
+  [
+    "https://images.unsplash.com/photo-1517842645767-c639042777db?w=1200",
+    "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1200"
+  ],
+
+  // 9. Айнадағы бейне
+  [
+    "https://simg.marwin.kz/media/catalog/product/cache/8d1771fdd19ec2393e47701ba45e606d/a/b/abdik_t_parasat_maydany_katty__1460088_3.png",
+    "https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1200"
+  ],
+
+  // 10. Кітаптар
+  [
+    "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1200",
+    "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=1200"
+  ],
+
+  // 11. Әдебиет
+  [
+    "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=1200",
+    "https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=1200"
+  ],
+
+  // 12. Әділдік
+  [
+    "https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1200",
+    "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1200"
+  ],
+
+  // 13. Қоғам
+  [
+    "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200",
+    "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200"
+  ],
+
+  // 14. Студенттер
+  [
+    "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200",
+    "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200"
+  ],
+
+  // 15. Қорытынды
+  [
+    "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1200",
+    "https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=1200"
+  ]
+
+];
+
+/* =====================================
+   15 НЕГІЗГІ СЛАЙДТЫҢ МӘТІНДЕРІ
+===================================== */
+
+const DATA = [
+
+  // 1
+  {
+    tag:"ПРЕЗЕНТАЦИЯ",
+    title:"ПАРАСАТ<br><span>МАЙДАНЫ</span>",
+    lead:"Төлен Әбдіктің философиялық-психологиялық шығармасы",
+    body:[],
+    points:[],
+    note:"",
+    caption:"Төлен Әбдік — «Парасат майданы»",
+    cover:true,
+    contain:true
+  },
+
+  // 2
+  {
+    tag:"02 / АВТОР",
+    title:"Төлен Әбдік туралы",
+    lead:"Қазақ әдебиетінің көрнекті жазушысы",
+    body:[
+      "Төлен Әбдік — <span class='blue'>1942 жылы 4 қыркүйекте</span> Қостанай өңірінде дүниеге келген қазақ жазушысы.",
+      "Оның шығармаларында <span class='green'>адамгершілік</span>, <span class='blue'>ар-ұят</span>, өмірдің мәні және адамның ішкі жан дүниесі суреттеледі.",
+      "Жазушы <span class='gold'>философиялық-психологиялық</span> туындыларымен танымал."
+    ],
+    points:[],
+    note:"",
+    caption:"Жазушы Төлен Әбдік",
+    contain:false
+  },
+
+  // 3
+  {
+    tag:"03 / ШЫҒАРМАШЫЛЫҚ",
+    title:"Жазушы шығармашылығы",
+    lead:"Адам жанының терең сырлары",
+    body:[
+      "Төлен Әбдік шығармаларында адамның сезімдері мен ішкі дүниесіне ерекше назар аударылады.",
+      "Жазушы <span class='blue'>өмірдің мәні</span>, <span class='green'>адамгершілік</span> және <span class='red'>рухани қайшылықтар</span> туралы ойлануға шақырады."
+    ],
+    points:[
+      "Психологиялық тереңдік",
+      "Философиялық ой",
+      "Рухани ізденіс"
+    ],
+    note:"",
+    caption:"Жазушылық және шығармашылық",
+    contain:false
+  },
+
+  // 4
+  {
+    tag:"04 / ШЫҒАРМА",
+    title:"«Парасат майданы» туралы",
+    lead:"Философиялық-психологиялық повесть",
+    body:[
+      "«Парасат майданы» — адамның санасындағы рухани қайшылықтарды бейнелейтін шығарма.",
+      "Онда <span class='green'>жақсылық</span> пен <span class='red'>жамандық</span>, <span class='blue'>сенім</span> мен күмән арасындағы тартыс көрсетіледі.",
+      "Повесть оқырманды адам табиғаты туралы ойлануға шақырады."
+    ],
+    points:[],
+    note:"",
+    caption:"«Парасат майданы» кітабы",
+    contain:true
+  },
+
+  // 5
+  {
+    tag:"05 / ЖАНР",
+    title:"Шығарманың жанры",
+    lead:"Адамның рухани әлемі",
+    body:[
+      "<span class='blue'>Философиялық сипаты</span> — өмірдің мәні, ақиқат және адамның таңдауы туралы сұрақтар қарастырылады.",
+      "<span class='green'>Психологиялық сипаты</span> — кейіпкердің ішкі сезімдері, күдігі және жан дүниесі терең бейнеленеді."
+    ],
+    points:[
+      "Философиялық ой",
+      "Психологиялық тартыс",
+      "Адамның моральдық таңдауы"
+    ],
+    note:"",
+    caption:"Әдеби шығарма",
+    contain:false
+  },
+
+  // 6
+  {
+    tag:"06 / МАЗМҰНЫ",
+    title:"Қысқаша мазмұны",
+    lead:"Кейіпкердің күнделігі",
+    body:[
+      "Басты кейіпкер психологиялық ауруханада емделіп жатып, <span class='blue'>күнделік жазады</span>.",
+      "Ол қоғам, адамдардың мінез-құлқы, <span class='green'>жақсылық</span> пен <span class='red'>жамандық</span> туралы толғанады.",
+      "Кейіпкердің ойларына қарсы пікір білдіретін хаттар пайда болып, рухани тартыс басталады."
+    ],
+    points:[],
+    note:"",
+    caption:"Күнделік — шығармадағы маңызды тәсіл",
+    contain:false
+  },
+
+  // 7
+  {
+    tag:"07 / КЕЙІПКЕР",
+    title:"Кейіпкердің ішкі әлемі",
+    lead:"Ой мен сезім қайшылығы",
+    body:[
+      "Басты кейіпкер — қоғамдағы мәселелерге бейжай қарамайтын, терең ойланатын адам.",
+      "Оның жан дүниесінде <span class='green'>адамгершілікке ұмтылу</span> мен <span class='red'>ішкі күмән</span> арасында күрес жүреді.",
+      "Осы арқылы автор адам табиғатының күрделілігін көрсетеді."
+    ],
+    points:[],
+    note:"",
+    caption:"Адамның ішкі толғанысы",
+    contain:false
+  },
+
+  // 8
+  {
+    tag:"08 / КОМПОЗИЦИЯ",
+    title:"Күнделік пен хаттар",
+    lead:"Екі көзқарас арасындағы тартыс",
+    body:[
+      "Күнделік кейіпкердің <span class='blue'>шынайы ойларын</span> ашады.",
+      "Хаттарда оған қарсы пікірлер айтылып, <span class='green'>ізгілік</span> пен <span class='red'>зұлымдық</span> туралы күрделі мәселелер талқыланады.",
+      "Осы тәсіл шығарманың мазмұнын тереңдете түседі."
+    ],
+    points:[],
+    note:"",
+    caption:"Хаттар мен жазбалар",
+    contain:false
+  },
+
+  // 9
+  {
+    tag:"09 / ТАРТЫС",
+    title:"Ізгілік пен зұлымдық",
+    lead:"Шығарманың басты мәселесі",
+    body:[
+      "<span class='green'>Ізгілік</span> — мейірімділік, адалдық және адамгершілік.",
+      "<span class='red'>Зұлымдық</span> — қатыгездік, әділетсіздік және немқұрайлық.",
+      "Екі ұғым арасындағы тартыс кейіпкердің рухани күресін көрсетеді."
+    ],
+    points:[],
+    note:"",
+    caption:"Рухани тартысты бейнелейтін көрініс",
+    contain:true
+  },
+
+  // 10
+  {
+    tag:"10 / ТАҚЫРЫПТАР",
+    title:"Шығарманың негізгі тақырыптары",
+    lead:"Адам және рухани құндылықтар",
+    body:[
+      "Повесте адам өміріндегі маңызды моральдық мәселелер қарастырылады."
+    ],
+    points:[
+      "<span class='green'>Ізгілік</span> пен <span class='red'>зұлымдық</span>",
+      "<span class='blue'>Ақиқат</span> пен жалғандық",
+      "Ар-ұят және жауапкершілік",
+      "Рухани қайшылық",
+      "Адамның моральдық таңдауы"
+    ],
+    note:"",
+    caption:"Философиялық және әдеби кітаптар",
+    contain:false
+  },
+
+  // 11
+  {
+    tag:"11 / КӨРКЕМДІК ЕРЕКШЕЛІК",
+    title:"Көркемдік ерекшелігі",
+    lead:"Психологиялық тереңдік",
+    body:[
+      "Жазушы кейіпкердің сыртқы әрекетінен гөрі <span class='blue'>ішкі жан дүниесін</span> бейнелеуге мән береді.",
+      "Күнделік пен хаттар арқылы адамның ойы мен сезімі, қарама-қарсы пікірлері ашылады."
+    ],
+    points:[
+      "Ішкі монолог",
+      "Күнделік пен хат",
+      "Философиялық сұрақтар",
+      "<span class='red'>Қарама-қарсы пікірлер</span>"
+    ],
+    note:"",
+    caption:"Кітап оқу және әдебиет",
+    contain:false
+  },
+
+  // 12
+  {
+    tag:"12 / ИДЕЯ",
+    title:"Шығарманың негізгі идеясы",
+    lead:"Адамгершілікті сақтау",
+    body:[
+      "Автор адам өз бойындағы <span class='red'>жаман қасиеттермен</span> күресіп, <span class='green'>ізгілік</span> пен <span class='blue'>ар-ұятты</span> сақтауы керек екенін көрсетеді.",
+      "Шығарма адалдық, мейірімділік және жауапкершіліктің маңызын түсіндіреді."
+    ],
+    points:[],
+    note:"Парасат — адамның өз ісіне жауапкершілікпен қарауы.",
+    caption:"Әділдік пен жауапкершілік",
+    contain:false
+  },
+
+  // 13
+  {
+    tag:"13 / ҚОҒАМ",
+    title:"Қазіргі қоғаммен байланысы",
+    lead:"Шығарманың бүгінгі маңызы",
+    body:[
+      "Қазіргі қоғамда <span class='red'>өтірік, әділетсіздік, немқұрайлық</span> кездеседі.",
+      "Осындай жағдайда <span class='green'>мейірімділік</span>, <span class='blue'>әділдік</span> және адамдарды түсіне білу маңызды.",
+      "Повесть әр адамды өз әрекеті туралы ойлануға шақырады."
+    ],
+    points:[],
+    note:"",
+    caption:"Қоғамдағы адамдардың қарым-қатынасы",
+    contain:false
+  },
+
+  // 14
+  {
+    tag:"14 / ЖЕКЕ ПІКІР",
+    title:"Колледж өмірімен байланысы",
+    lead:"Шығармадан алған әсерім",
+    body:[
+      "Колледжде әр адамның мінезі мен көзқарасы әртүрлі болады.",
+      "Кейде <span class='red'>түсініспеушілік</span> туындауы мүмкін. Осындай сәтте <span class='green'>сабыр сақтау</span> және <span class='blue'>өзгені түсіну</span> маңызды.",
+      "Менің ойымша, шығарма адамды жауапкершілікке және адамгершілікке үйретеді."
+    ],
+    points:[],
+    note:"",
+    caption:"Колледж өмірі",
+    contain:false
+  },
+
+  // 15
+  {
+    tag:"15 / ҚОРЫТЫНДЫ",
+    title:"Қорытынды",
+    lead:"Парасат — адамдық құндылық",
+    body:[
+      "«Парасат майданы» — адамды өз ішкі дүниесіне үңілуге шақыратын шығарма.",
+      "Повесте <span class='green'>ізгілік</span> пен <span class='red'>зұлымдықтың</span> тартысы арқылы адамның моральдық таңдауы көрсетіледі.",
+      "Әр адам <span class='blue'>адал</span>, <span class='green'>мейірімді</span> және <span class='gold'>парасатты</span> болуға ұмтылуы керек."
+    ],
+    points:[],
+    note:"",
+    caption:"Кітап — рухани құндылық",
+    contain:false
+  }
+
+];
+
+/* =====================================
+   РЕЗЕРВТІК СУРЕТ
+===================================== */
+
+function createFallback(index) {
+
+  // Интернеттен сурет ашылмаған жағдайда
+  // көрсетілетін қарапайым кітап кескіні.
+
+  const svg = `
+  <svg xmlns="http://www.w3.org/2000/svg"
+       viewBox="0 0 800 900">
+
+    <defs>
+      <linearGradient id="bg" x1="0" y1="0"
+                      x2="1" y2="1">
+        <stop stop-color="#224c3e"/>
+        <stop offset="1" stop-color="#10261f"/>
+      </linearGradient>
+    </defs>
+
+    <rect width="800" height="900"
+          fill="url(#bg)"/>
+
+    <circle cx="${600-index*12}"
+            cy="180"
+            r="220"
+            fill="#c5a36c"
+            opacity=".15"/>
+
+    <rect x="105" y="130"
+          width="590" height="640"
+          rx="30"
+          fill="none"
+          stroke="#d6b982"
+          stroke-width="5"/>
+
+    <path d="M400 310
+      Q290 255 180 310
+      L180 630
+      Q290 585 400 650Z"
+      fill="#f0e4ce"/>
+
+    <path d="M400 310
+      Q510 255 620 310
+      L620 630
+      Q510 585 400 650Z"
+      fill="#96b09a"/>
+
+    <path d="M400 315 L400 650"
+          stroke="#d2aa6e"
+          stroke-width="8"/>
+
+    <g stroke="#a9977a" stroke-width="5">
+      <path d="M215 380 Q300 350 365 395"/>
+      <path d="M215 450 Q300 420 365 465"/>
+      <path d="M215 520 Q300 490 365 535"/>
+    </g>
+
+    <g stroke="#e3ece0" stroke-width="5">
+      <path d="M435 395 Q500 350 585 380"/>
+      <path d="M435 465 Q500 420 585 450"/>
+      <path d="M435 535 Q500 490 585 520"/>
+    </g>
+
+  </svg>`;
+
+  return "data:image/svg+xml;charset=utf-8," +
+    encodeURIComponent(svg);
+}
+
+function loadAlternative(img,index) {
+
+  const list=PHOTO_LIST[index];
+  const next=Number(img.dataset.try||0)+1;
+
+  if(next<list.length) {
+    img.dataset.try=next;
+    img.src=list[next];
+  } else {
+    img.onerror=null;
+    img.src=createFallback(index);
+  }
+}
+
+/* =====================================
+   15 СЛАЙДТЫ ҚҰРАСТЫРУ
+===================================== */
+
+function makeSlide(item,index) {
+
+  const titleTag=item.cover?"h1":"h2";
+
+  const paragraphs=item.body.map(t=>
+    `<p class="paragraph">${t}</p>`
+  ).join("");
+
+  const points=item.points.length
+    ? `<div class="points">
+        ${item.points.map(t=>
+          `<div class="point">${t}</div>`
+        ).join("")}
+      </div>`
+    : "";
+
+  const note=item.note
+    ? `<div class="note">${item.note}</div>`
+    : "";
+
+  const meta=item.cover
+    ? `<div class="cover-meta">
+        <div>
+          <strong>Орындаған:</strong> Шырай
+        </div>
+        <div>
+          <strong>Пәні:</strong> Қазақ әдебиеті
+        </div>
+        <div>
+          <strong>2026 жыл</strong>
+        </div>
+      </div>`
+    : "";
+
+  return `
+  <section class="slide ${item.cover?"cover":""}">
+    <div class="layout">
+
+      <div class="content">
+
+        <div class="kicker">${item.tag}</div>
+
+        <${titleTag}>
+          ${item.title}
+        </${titleTag}>
+
+        <div class="lead">${item.lead}</div>
+
+        ${paragraphs}
+        ${points}
+        ${note}
+        ${meta}
+
+      </div>
+
+      <div class="image-side ${item.contain?"contain":""}">
+
+        <img
+          src="${PHOTO_LIST[index][0]}"
+          data-try="0"
+          alt="${item.caption}"
+          loading="eager"
+          onerror="loadAlternative(this,${index})"
+        >
+
+        <div class="image-caption">
+          ${item.caption}
+        </div>
+
+      </div>
+
+    </div>
+  </section>`;
+}
+
+/* =====================================
+   АРНАЙЫ 16-БЕТ — ҚОШТАСУ
+===================================== */
+
+function makeFarewell() {
+
+  return `
+  <section class="slide farewell">
+
+    <div class="farewell-layout">
+
+      <div class="farewell-label">
+        ТӨЛЕН ӘБДІК · ПАРАСАТ МАЙДАНЫ
+      </div>
+
+      <div class="farewell-line"></div>
+
+      <img
+        class="farewell-book"
+        src="${PHOTO_LIST[0][0]}"
+        data-try="0"
+        alt="Парасат майданы"
+        onerror="loadAlternative(this,0)"
+      >
+
+      <h2>
+        НАЗАРЛАРЫҢЫЗҒА<br>
+        <span>РАҚМЕТ!</span>
+      </h2>
+
+      <div class="farewell-line"></div>
+
+      <div class="farewell-author">
+        Орындаған: <strong>Шырай</strong>
+      </div>
+
+      <div class="farewell-footer">
+        Қазақ әдебиеті · 2026 жыл
+      </div>
+
+    </div>
+
+  </section>`;
+}
+
+/* =====================================
+   БАРЛЫҚ 16 БЕТТІ ШЫҒАРУ
+===================================== */
+
+const slidesRoot=document.getElementById("slides");
+
+slidesRoot.innerHTML=
+  DATA.map(makeSlide).join("")+
+  makeFarewell();
+
+const slides=document.querySelectorAll(".slide");
+
+let current=0;
+
+const prev=document.getElementById("prev");
+const next=document.getElementById("next");
+
+const counter=document.getElementById("counter");
+const progress=document.getElementById("progress");
+
+/* =====================================
+   СЛАЙД АУЫСТЫРУ
+===================================== */
+
+function showSlide(n) {
+
+  current=Math.max(
+    0,
+    Math.min(n,slides.length-1)
+  );
+
+  slides.forEach((slide,i)=>{
+    slide.classList.toggle("active",i===current);
+  });
+
+  counter.textContent=
+    String(current+1).padStart(2,"0")+
+    " / "+
+    String(slides.length).padStart(2,"0");
+
+  progress.style.width=
+    ((current+1)/slides.length*100)+"%";
+
+  prev.disabled=current===0;
+  next.disabled=current===slides.length-1;
+
+  slides[current].scrollTop=0;
+}
+
+prev.addEventListener("click",()=>{
+  showSlide(current-1);
+});
+
+next.addEventListener("click",()=>{
+  showSlide(current+1);
+});
+
+/* =====================================
+   ПЕРНЕТАҚТАМЕН БАСҚАРУ
+===================================== */
+
+document.addEventListener("keydown",e=>{
+
+  if(["ArrowRight","PageDown"," "].includes(e.key)){
+    e.preventDefault();
+    showSlide(current+1);
+  }
+
+  if(["ArrowLeft","PageUp"].includes(e.key)){
+    e.preventDefault();
+    showSlide(current-1);
+  }
+
+  if(e.key==="Home"){
+    showSlide(0);
+  }
+
+  if(e.key==="End"){
+    showSlide(slides.length-1);
+  }
+
+});
+
+/* =====================================
+   ТОЛЫҚ ЭКРАН
+===================================== */
+
+document.getElementById("fullscreen")
+.addEventListener("click",async()=>{
+
+  try {
+
+    if(!document.fullscreenElement){
+      await document.documentElement.requestFullscreen();
+    } else {
+      await document.exitFullscreen();
+    }
+
+  } catch(error) {
+    console.log("Толық экран ашылмады",error);
+  }
+
+});
+
+/* =====================================
+   ТЕЛЕФОНДА САУСАҚПЕН АУЫСТЫРУ
+===================================== */
+
+let startX=0;
+let startY=0;
+
+const stage=document.getElementById("stage");
+
+stage.addEventListener("touchstart",e=>{
+  startX=e.changedTouches[0].screenX;
+  startY=e.changedTouches[0].screenY;
+},{passive:true});
+
+stage.addEventListener("touchend",e=>{
+
+  const dx=e.changedTouches[0].screenX-startX;
+  const dy=e.changedTouches[0].screenY-startY;
+
+  if(Math.abs(dx)>65 &&
+     Math.abs(dx)>Math.abs(dy)*1.3){
+
+    if(dx<0){
+      showSlide(current+1);
+    } else {
+      showSlide(current-1);
+    }
+
+  }
+
+},{passive:true});
+
+/* =====================================
+   БАСТАПҚЫ БЕТ
+===================================== */
+
+showSlide(0);
+
+</script>
+</body>
+</html>
